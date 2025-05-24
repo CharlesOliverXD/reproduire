@@ -6,10 +6,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar
-        hidden= {true}
+        hidden={true}
       />
 
-      <Interview/>
+      <Interview />
     </View>
   );
 }
@@ -17,9 +17,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal : 16,
-    paddingVertical : 16
+    backgroundColor: '#F0EEE2',
+    paddingHorizontal: 16,
+    paddingVertical: 16
     // alignItems: 'center',
     // justifyContent: 'center',
   },
