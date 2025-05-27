@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Interview = () => {
     return (
-        <View>
+        <View style={styles.container}>
 
             <View style={styles.haut} >
                 <TouchableOpacity activeOpacity={0.8}>
@@ -87,6 +87,14 @@ const Interview = () => {
 
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+        backgroundColor: "#EFECE3",
+        padding: 16
+    },
+
 
     haut: {
         flexDirection: "row",

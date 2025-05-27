@@ -12,8 +12,8 @@ export default function App() {
         hidden={true}
       />
 
-      {/* <Interview /> */}
-      <Profile />
+      <Interview />
+      {/* <Profile /> */}
 
     </View>
   );
