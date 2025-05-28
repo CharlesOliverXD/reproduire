@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Interview from './ecrans/interviews';
-import { Ionicons } from '@expo/vector-icons';
+
 import Profile from './ecrans/Profile';
+import Amazon from './ecrans/Amazon';
 
 
 export default function App() {
@@ -12,8 +13,10 @@ export default function App() {
         hidden={true}
       />
 
-      <Interview />
+      {/* <Interview /> */}
       {/* <Profile /> */}
+
+      <Amazon />
 
     </View>
   );
