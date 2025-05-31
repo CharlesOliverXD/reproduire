@@ -1,26 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
+import Donnees from '../Donnees/Donnees';
 
-const Amazon = () => {
+const Job = ({ route, navigation }) => {
+
+
+    const offre_envoyee = route.params.offre;
+    const offre = Donnees.find((elem) => elem.libelle == offre_envoyee);
+
     return (
+
         <LinearGradient
-            colors={['#F7C840', '#F6F6EC']}
+            colors={['#FAC940', '#F5F5F5']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={styles.container}
         >
             {/* Fin moitié */}
-            <View style={{ flex: 2, flexDirection: "column", justifyContent: "space-between" }} >
+            <View style={{ flex: 3, flexDirection: "column", justifyContent: "space-between" }} >
 
                 <View style={styles.haut} >
-                    <View style={[styles.cercle, { backgroundColor: "white" }]} >
-                        <Ionicons name='chevron-back-outline' size={24} />
-                    </View>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.goBack()}
+                    >
+                        <View style={[styles.cercle, { backgroundColor: "white" }]} >
+                            <Ionicons name='chevron-back-outline' size={24} />
+                        </View>
+                    </TouchableOpacity>
+
                     <View>
-                        <Image style={{ width: 64, height: 64, borderRadius: 64 / 2 }} source={require('../assets/img/amazon.png')} />
+                        <Image style={{ width: 64, height: 64, borderRadius: 64 / 2 }} source={offre.logo} />
                     </View>
                     <View style={[styles.cercle, { backgroundColor: "white" }]}>
                         <Ionicons name="bookmark-outline" />
@@ -28,19 +41,19 @@ const Amazon = () => {
                 </View>
 
                 <View style={{ alignItems: "center" }} >
-                    <Text style={{ fontSize: 35, fontWeight: 600 }}>Amazon</Text>
+                    <Text style={{ fontSize: 35, fontWeight: 600 }}>{offre.libelle}</Text>
                 </View>
 
                 <View style={{ alignItems: "center" }}>
                     <View style={styles.poste}>
-                        <Text>Software Development Ingenior </Text>
+                        <Text>{offre.poste}</Text>
                     </View>
                 </View>
 
                 <View style={{ alignItems: "center" }} >
                     <View style={{ flexDirection: "row", alignItems: "center" }} >
                         <Ionicons name="location-outline" />
-                        <Text>California, USA </Text>
+                        <Text>{offre.lieu}</Text>
                     </View>
                 </View>
 
@@ -107,30 +120,40 @@ const Amazon = () => {
 
             {/* Autre moitié */}
 
-            <View style={{ flex: 3, justifyContent: "center" }}>
+            <View style={{ flex: 4, justifyContent: "center", paddingTop: 16, paddingBottom: 64 }}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                >
 
+                    <View>
+                        <View style={{ justifyContent: "center", alignItems: "center" }}>
+                            <Text style={styles.qualication}>
+                                Minimum qualification
+                            </Text>
+                        </View>
 
-                <View>
-                    <View style={{ justifyContent: "center", alignItems: "center" }}>
-                        <Text style={styles.qualication}>
-                            Minimum qualification
+                        <View style={styles.liste} >
+                            {offre.qualification.map((elem, index) => (
+                                <Text key={index} style={{ marginBottom: 8 }}>
+                                    + {elem}
+                                </Text>
+                            ))}
+
+                        </View>
+                    </View>
+
+                    <View style={{ height: 16 }}></View>
+
+                    <TouchableOpacity style={styles.bouton}
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate('Process', offre_envoyee)}
+                    >
+                        <Text style={{ color: "white" }}>
+                            Apply for this job
                         </Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={styles.liste} >
-                        <Text style={{ marginBottom: 8 }}>*Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Text>
-                        <Text style={{ marginBottom: 8 }}>* Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took</Text>
-                        <Text>* Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has.</Text>
-                    </View>
-                </View>
-
-                <View style={{ height: 16 }}></View>
-
-                <TouchableOpacity style={styles.bouton} activeOpacity={0.8} >
-                    <Text style={{ color: "white" }}>
-                        Apply for this job
-                    </Text>
-                </TouchableOpacity>
+                </ScrollView>
 
 
             </View>
@@ -227,4 +250,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default Amazon;
+export default Job;

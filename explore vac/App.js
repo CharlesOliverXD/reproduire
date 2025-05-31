@@ -1,24 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Interview from './ecrans/interviews';
+import { StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Profile from './ecrans/Profile';
-import Amazon from './ecrans/Amazon';
+import Process from './ecrans/Process';
+import Vacancies from './ecrans/Vacancies';
+import Job from './ecrans/Job';
+
+const Stack = createNativeStackNavigator();
 
 
 export default function App() {
   return (
-    <View style={styles.container_app}>
+    <GestureHandlerRootView style={{ flex: 1, justifyContent: "center" }}>
       <StatusBar
         hidden={true}
       />
 
-      {/* <Interview /> */}
-      {/* <Profile /> */}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Vacancies" screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Vacancies" component={Vacancies} />
+          <Stack.Screen name="Process" component={Process} />
+          <Stack.Screen name="Job" component={Job} />
+        </Stack.Navigator>
+      </NavigationContainer>
 
-      <Amazon />
-
-    </View>
+    </GestureHandlerRootView>
   );
 }
 

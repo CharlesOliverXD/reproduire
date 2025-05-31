@@ -4,11 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Fleche = ({ bg_color_fleche, color_arrow }) => {
     return (
-        <TouchableOpacity activeOpacity={0.8}>
-            <View style={[styles.rond_fleche, { backgroundColor: bg_color_fleche }]}>
-                <Ionicons name="arrow-back" size={24} color={color_arrow} />
-            </View>
-        </TouchableOpacity>
+        <View style={[styles.rond_fleche, { backgroundColor: bg_color_fleche }]}>
+            <Ionicons name="arrow-back" size={24} color={color_arrow} />
+        </View>
     )
 }
 
