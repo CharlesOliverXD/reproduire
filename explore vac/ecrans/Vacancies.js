@@ -1,18 +1,17 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, RootTagContext } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Fleche from '../composants/Fleche';
 import { ScrollView } from 'react-native-gesture-handler';
+import Donnees from "../Donnees/Donnees"
 
 const Vacancies = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* Elements du haut */}
             <View style={{ padding: 16 }} >
-
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }} >
-
                     <View style={{ flexDirection: "row", alignItems: "center" }} >
                         <View>
                             <Image style={styles.image} source={require('../assets/img/charles.jpg')} />
@@ -28,7 +27,6 @@ const Vacancies = ({ navigation }) => {
                             <Ionicons name="search" size={16} color="#2E2B22" />
                         </View>
                     </TouchableOpacity>
-
                 </View>
 
                 <View style={styles.section_2}>
@@ -48,151 +46,55 @@ const Vacancies = ({ navigation }) => {
             {/* Les cadres */}
             <ScrollView
                 showsVerticalScrollIndicator={false}
+                style={{ paddingHorizontal: 16 }}
             >
 
-                <View style={[styles.cadre_generale, styles.cadre_uber]} >
+                {
+                    Donnees.map((elem, index) => {
+                        return (
 
-                    <View style={styles.tete}>
-                        <View style={styles.sous_cadre}>
-                            <Image style={styles.logo_entreprise} source={require('../assets/img/uber.png')} />
-                            <Text style={{ marginLeft: 10, color: "white" }}>User</Text>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Job', { offre: "Uber" })}
-                            activeOpacity={0.8}
-                        >
-                            <Fleche
-                                bg_color_fleche="white"
-                                color_arrow="#232228"
-                            />
-                        </TouchableOpacity>
-                    </View>
+                            <View key={index} style={[styles.cadre_generale,]} >
 
-                    <View>
-                        <View>
-                            <Text style={{ fontSize: 48, fontWeight: "bold", color: "white" }} >Software Development Engineer</Text>
-                        </View>
+                                <View style={styles.tete}>
+                                    <View style={styles.sous_cadre}>
+                                        <Image style={styles.logo_entreprise} source={elem.logo} />
+                                        <Text style={{ marginLeft: 10, color: "#202020" }}>{elem.libelle}</Text>
+                                    </View>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('Job', { offre: elem.libelle })}
+                                        activeOpacity={0.8}
+                                    >
+                                        <Fleche
+                                            bg_color_fleche="#232228"
+                                            color_arrow="white"
+                                        />
+                                    </TouchableOpacity>
+                                </View>
 
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-                                <Text style={{ fontSize: 24, fontWeight: "bold", color: "white" }}>$150k</Text>
-                                <Text style={{ fontSize: 16, color: "white" }}>/year</Text>
+                                <View>
+                                    <View>
+                                        <Text style={{ fontSize: 40, fontWeight: "bold", color: "#202020" }} >{elem.poste}</Text>
+                                    </View>
+
+                                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                                        <View style={{ flexDirection: "row", alignItems: "baseline" }}>
+                                            <Text style={{ fontSize: 24, fontWeight: "bold", color: "#202020" }}>$ {elem.salaire} k</Text>
+                                            <Text style={{ fontSize: 16, color: "#202020" }}>/year</Text>
+                                        </View>
+
+                                        <View>
+                                            <Text>Limite: {elem.date_limite}</Text>
+                                        </View>
+                                    </View>
+                                </View>
+
+
                             </View>
-                            <Ionicons name='chevron-forward-outline' size={16} color="white" />
-                        </View>
-                    </View>
+                        )
+                    })
+                }
 
-
-                </View>
-
-                <View style={[styles.cadre_generale, styles.cadre_amazon]} >
-
-                    <View style={styles.tete}>
-                        <View style={styles.sous_cadre}>
-                            <Image style={styles.logo_entreprise} source={require('../assets/img/amazon.png')} />
-                            <Text style={{ marginLeft: 10 }}>Amazon</Text>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Job', { offre: "Amazon" })}
-                            activeOpacity={0.8}
-                        >
-                            <Fleche
-                                bg_color_fleche="white"
-                                color_arrow="#232228"
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View>
-                        <View>
-                            <Text style={{ fontSize: 48, fontWeight: "bold" }} >Software Development Engineer</Text>
-                        </View>
-
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-                                <Text style={{ fontSize: 24, fontWeight: "bold" }}>$150k</Text>
-                                <Text style={{ fontSize: 16 }}>/year</Text>
-                            </View>
-                            <Ionicons name='chevron-forward-outline' size={16} />
-                        </View>
-                    </View>
-
-
-                </View>
-
-                <View style={[styles.cadre_generale, styles.cadre_microsoft]} >
-
-                    <View style={styles.tete}>
-                        <View style={styles.sous_cadre}>
-                            <Image style={styles.logo_entreprise} source={require('../assets/img/microsoft.png')} />
-                            <Text style={{ marginLeft: 10, color: "white" }}>Microsoft</Text>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Job', { offre: "Microsoft" })}
-                            activeOpacity={0.8}
-                        >
-                            <Fleche
-                                bg_color_fleche="white"
-                                color_arrow="#232228"
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View>
-                        <View>
-                            <Text style={{ fontSize: 48, fontWeight: "bold", color: "white" }} >Software Development Engineer</Text>
-                        </View>
-
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-                                <Text style={{
-                                    fontSize: 24, fontWeight: "bold", color: "white"
-                                }}>$150k</Text>
-                                < Text style={{ fontSize: 16, color: "white" }}>/year</Text>
-                            </View>
-                            <Ionicons name='chevron-forward-outline' size={16} color="white" />
-                        </View>
-                    </View>
-
-
-                </View>
-
-                <View style={[styles.cadre_generale, styles.cadre_google]} >
-
-                    <View style={styles.tete}>
-                        <View style={styles.sous_cadre}>
-                            <Image style={styles.logo_entreprise} source={require('../assets/img/google.jpg')} />
-                            <Text style={{ marginLeft: 10 }}>Google</Text>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('Job', { offre: "Google" })}
-                            activeOpacity={0.8}
-                        >
-                            <Fleche
-                                bg_color_fleche="white"
-                                color_arrow="#232228"
-                            />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View>
-                        <View>
-                            <Text style={{ fontSize: 48, fontWeight: "bold" }} >Software Development Engineer</Text>
-                        </View>
-
-                        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                            <View style={{ flexDirection: "row", alignItems: "baseline" }}>
-                                <Text style={{ fontSize: 24, fontWeight: "bold" }}>$150k</Text>
-                                <Text style={{ fontSize: 16 }}>/year</Text>
-                            </View>
-                            <Ionicons name='chevron-forward-outline' size={16} />
-                        </View>
-                    </View>
-
-
-                </View>
-
-            </ScrollView>
+            </ScrollView >
 
             {/*Fin Les cadres */}
 
@@ -248,62 +150,35 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderColor: "#89867D",
         borderWidth: 1,
-        borderRadius: 100
+        borderRadius: 100,
+
 
     },
 
     logo_entreprise: {
-        // A supprimer
-
         width: 40,
         height: 40,
         borderRadius: 40 / 2,
     },
 
     cadre_generale: {
-        // A supprimer
         padding: 16,
-        borderTopRightRadius: 16,
-        borderTopLeftRadius: 16,
+        borderRadius: 16,
+        backgroundColor: "#FDC741",
+        marginBottom: 8
+
+
+
     },
 
     tete: {
-        // A supprimer
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "baseline",
     },
 
     sous_cadre: {
-        // A supprimer
-
         flexDirection: "row", alignItems: "center"
-    },
-
-    cadre_uber: {
-        backgroundColor: "#684BF1",
-        paddingBottom: 40,
-        marginBottom: -20
-
-    },
-
-    cadre_amazon: {
-        backgroundColor: "#FDC741",
-        paddingBottom: 40,
-        marginBottom: -20
-
-    },
-
-    cadre_microsoft: {
-        backgroundColor: "#202020",
-        paddingBottom: 40,
-        marginBottom: -20
-
-    },
-
-    cadre_google: {
-        backgroundColor: "#CBD87E",
-
     },
 
 

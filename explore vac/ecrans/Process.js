@@ -79,7 +79,7 @@ const Process = ({ navigation, route }) => {
                 />
 
                 <Carte
-                    stage="Stage 1"
+                    stage="Stage 3"
                     titre="Resume screen"
                     description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
 
@@ -91,6 +91,21 @@ const Process = ({ navigation, route }) => {
 
                     bg_color="#F9CD62"
                     texte_color="black"
+                />
+
+                <Carte
+                    stage="Stage 4"
+                    titre="Finalisation"
+                    description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"
+
+                    bg_stage="white"
+                    color_stage="#262628"
+
+                    bg_color_fleche="white"
+                    color_arrow="#232228"
+
+                    bg_color="#262628"
+                    texte_color="white"
                 />
 
             </ScrollView>

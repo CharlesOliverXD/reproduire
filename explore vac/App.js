@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Process from './ecrans/Process';
 import Vacancies from './ecrans/Vacancies';
 import Job from './ecrans/Job';
+import Principal from './ecrans/Principal';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,8 @@ export default function App() {
       />
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Vacancies" screenOptions={{ headerShown: false }} >
+        <Stack.Navigator initialRouteName="Principal" screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Principal" component={Principal} />
           <Stack.Screen name="Vacancies" component={Vacancies} />
           <Stack.Screen name="Process" component={Process} />
           <Stack.Screen name="Job" component={Job} />
