@@ -8,6 +8,7 @@ import Process from './ecrans/Process';
 import Vacancies from './ecrans/Vacancies';
 import Job from './ecrans/Job';
 import Principal from './ecrans/Principal';
+import Curve from './ecrans/Curve';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function App() {
 
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Principal" screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Curve" component={Curve} />
           <Stack.Screen name="Principal" component={Principal} />
           <Stack.Screen name="Vacancies" component={Vacancies} />
           <Stack.Screen name="Process" component={Process} />
