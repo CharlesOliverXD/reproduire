@@ -9,6 +9,7 @@ import Vacancies from './ecrans/Vacancies';
 import Job from './ecrans/Job';
 import Principal from './ecrans/Principal';
 import Curve from './ecrans/Curve';
+import Sign from './ecrans/Sign';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,7 +22,8 @@ export default function App() {
       />
 
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Principal" screenOptions={{ headerShown: false }} >
+        <Stack.Navigator initialRouteName="Vacancies" screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Sign" component={Sign} />
           <Stack.Screen name="Curve" component={Curve} />
           <Stack.Screen name="Principal" component={Principal} />
           <Stack.Screen name="Vacancies" component={Vacancies} />

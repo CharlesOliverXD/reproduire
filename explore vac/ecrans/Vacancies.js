@@ -7,6 +7,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Donnees from "../Donnees/Donnees"
 
 const Vacancies = ({ navigation }) => {
+
+
     return (
         <View style={styles.container}>
             {/* Elements du haut */}
